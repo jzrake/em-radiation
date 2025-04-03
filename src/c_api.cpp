@@ -188,7 +188,7 @@ static std::pair<double, Vector3D> lienard_wiechert_potentials(const ParticleTra
     return {scalar_potential, vector_potential};
 }
 
-PYBIND11_MODULE(radiation, m) {
+PYBIND11_MODULE(em_radiation, m) {
     m.doc() = "Python extension module for calculating radiation from a point charge";
 
     py::class_<Vector3D>(m, "Vector3D", py::buffer_protocol())
