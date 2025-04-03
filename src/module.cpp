@@ -94,13 +94,13 @@ public:
 
 // Condition for finding the retarded time
 static double retarded_time_condition(const ParticleTrajectory& trajectory, const Vector3D& r, double t, const Vector3D& rprime, double tprime) {
-    return (t - tprime) - (r - rprime).norm() / trajectory.c;
+    return (t - tprime) - (r - rprime).norm() / c;
 }
 
 // Function to find the retarded time using numerical root finding
 static double find_retarded_time(const ParticleTrajectory& trajectory, const Vector3D& r, double t) {
     // Initial guesses for retarded time
-    double t0 = t - r.norm() / trajectory.c;
+    double t0 = t - r.norm() / c;
     double t1 = t;
 
     // Calculate function values at initial guesses
@@ -177,7 +177,7 @@ static std::pair<double, Vector3D> lienard_wiechert_potentials(const ParticleTra
     Vector3D n = R / R.norm();
 
     // Calculate 1 - n·v/c
-    double beta_dot_n = (n.x*v.x + n.y*v.y + n.z*v.z) / trajectory.c;
+    double beta_dot_n = (n.x*v.x + n.y*v.y + n.z*v.z) / c;
     double kappa = 1.0 - beta_dot_n;
 
     // Scalar potential Φ
@@ -185,9 +185,9 @@ static std::pair<double, Vector3D> lienard_wiechert_potentials(const ParticleTra
 
     // Vector potential A
     Vector3D vector_potential = {
-        v.x * scalar_potential / trajectory.c,
-        v.y * scalar_potential / trajectory.c,
-        v.z * scalar_potential / trajectory.c
+        v.x * scalar_potential / c,
+        v.y * scalar_potential / c,
+        v.z * scalar_potential / c
     };
     return {scalar_potential, vector_potential};
 }
@@ -220,10 +220,8 @@ PYBIND11_MODULE(radiation, m) {
             ParticleTrajectory trajectory;
             if (kwargs.contains("omega")) trajectory.omega = kwargs["omega"].cast<double>();
             if (kwargs.contains("ell")) trajectory.ell = kwargs["ell"].cast<double>();
-            if (kwargs.contains("c")) trajectory.c = kwargs["c"].cast<double>();
             return trajectory;
         }))
-        .def_readwrite("c", &ParticleTrajectory::c)
         .def_readwrite("omega", &ParticleTrajectory::omega)
         .def_readwrite("ell", &ParticleTrajectory::ell)
         .def("position", &ParticleTrajectory::position, "Returns the position of a particle at time t",
