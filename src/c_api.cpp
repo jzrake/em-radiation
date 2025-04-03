@@ -184,11 +184,7 @@ static std::pair<double, Vector3D> lienard_wiechert_potentials(const ParticleTra
     double scalar_potential = 1.0 / (4.0 * M_PI * R_mag * kappa);
 
     // Vector potential A
-    Vector3D vector_potential = {
-        v.x * scalar_potential / c,
-        v.y * scalar_potential / c,
-        v.z * scalar_potential / c
-    };
+    Vector3D vector_potential = v * scalar_potential / c;
     return {scalar_potential, vector_potential};
 }
 
