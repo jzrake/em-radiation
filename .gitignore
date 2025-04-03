@@ -1,0 +1,38 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+*.so
+*.dll
+*.dylib
+*.pyd
+*.egg-info/
+__pycache__/
+*.py[cod]
+*.class
+
+# CMake build directories
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.cmake
+!CMakeLists.txt
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Lock files
+.uvlock
+# Keep uv.lock which is your dependency lock file
+!uv.lock
