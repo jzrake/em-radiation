@@ -3,9 +3,9 @@ requires = ["scikit-build-core>=0.4.3", "pybind11>=2.11.1"]
 build-backend = "scikit_build_core.build"
 
 [project]
-name = "radiation"
+name = "em_radiation"
 version = "0.1.0"
-description = "Your pybind11 extension module"
+description = ""
 requires-python = ">=3.8"
 dependencies = [
     "matplotlib>=3.7.5",

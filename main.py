@@ -1,6 +1,6 @@
 from matplotlib.pyplot import figure, show
 from numpy import *
-from radiation import *
+from em_radiation import *
 
 c = 1.0
 
